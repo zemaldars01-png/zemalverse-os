@@ -1,0 +1,287 @@
+
+/* my ZemalVerse OS styles */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Trebuchet MS", Arial, sans-serif;
+  background: url("sakura-wallpaper.png") center / cover no-repeat;
+  height: 100vh;
+  overflow: hidden;
+  color: #523b62;
+}
+
+/* top bar with time */
+
+.topbar {
+  height: 48px;
+  background: #674a80dd;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px;
+  font-size: 14px;
+  position: relative;
+  z-index: 9999;
+}
+
+/* my desktop icons */
+
+.icons {
+  position: absolute;
+  top: 65px;
+  left: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-height: calc(100vh - 75px);
+  overflow-y: auto;
+}
+
+.icons button {
+  width: 95px;
+  min-height: 75px;
+  background: #765991bb;
+  color: white;
+  border: 1px solid #ddc4ef;
+  border-radius: 9px;
+  cursor: pointer;
+  font-size: 14px;
+  line-height: 25px;
+  font-family: inherit;
+}
+
+.icons button:hover {
+  background: #9873b4;
+}
+
+/* windows for all my apps */
+
+.window {
+  width: 420px;
+  max-width: 90vw;
+  max-height: calc(100vh - 90px);
+  background: #fff9ff;
+  position: absolute;
+  top: 140px;
+  left: 30%;
+  border: 2px solid #b79acb;
+  border-radius: 10px;
+  box-shadow: 4px 5px 12px #40304a55;
+  overflow: auto;
+  display: none;
+}
+
+#welcome {
+  display: block;
+}
+
+.wide {
+  width: 550px;
+}
+
+/* top part of the windows */
+
+.bar {
+  background: #ddc7ec;
+  padding: 10px;
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: bold;
+  user-select: none;
+  touch-action: none;
+}
+
+.bar button {
+  background: #ee7b89;
+  color: #ee7b89;
+  border: 1px solid #cf5b6b;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  padding: 0;
+  font-size: 0;
+}
+
+.inside {
+  padding: 23px;
+}
+
+.center {
+  text-align: center;
+}
+
+/* fonts */
+
+h1, h2, h3 {
+  font-family: Georgia, serif;
+  color: #80579c;
+}
+
+h1 {
+  font-size: 27px;
+}
+
+h2 {
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 19px;
+}
+
+p {
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+button {
+  font-family: "Trebuchet MS", Arial, sans-serif;
+}
+
+a {
+  color: #7953a0;
+  font-weight: bold;
+}
+
+/* small buttons inside my apps */
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0;
+}
+
+.buttons button,
+#saveButton {
+  background: #e6d5f1;
+  color: #664483;
+  padding: 8px 12px;
+  border: 1px solid #c5a3d8;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.buttons button:hover,
+#saveButton:hover {
+  background: #d3b5e7;
+}
+
+/* notebook pages */
+
+.paper {
+  background: #fffdf5;
+  padding: 18px;
+  margin-top: 15px;
+  border: 1px solid #ddcde5;
+  border-radius: 5px;
+  text-align: left;
+}
+
+/* my projects */
+
+.project {
+  padding: 12px 16px;
+  margin: 12px 0;
+  background: #f6edf8;
+  border-left: 3px solid #b894d1;
+  border-radius: 5px;
+}
+
+.project h3 {
+  margin-bottom: 5px;
+}
+
+/* travel app */
+
+.bigemoji {
+  text-align: center;
+  font-size: 55px;
+}
+
+#countryName {
+  text-align: center;
+}
+
+#myWishlist {
+  line-height: 1.8;
+}
+
+/* my little sticky note */
+
+.little-note {
+  position: absolute;
+  right: 25px;
+  bottom: 25px;
+  width: 230px;
+  padding: 15px;
+  background: #fff0ba;
+  border: 1px solid #e2ce8b;
+  border-radius: 8px;
+  text-align: center;
+  color: #745b68;
+  transform: rotate(3deg);
+  box-shadow: 4px 5px 0 #3b2c4444;
+}
+
+.little-note button {
+  background: #f2d9e7;
+  border: 1px solid #d9acc9;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.little-note button:hover {
+  background: #ebc7dc;
+}
+
+/* for smaller screens */
+
+@media (max-width: 600px) {
+  .topbar {
+    font-size: 11px;
+    padding: 0 10px;
+  }
+
+  .topbar span:nth-child(2) {
+    display: none;
+  }
+
+  .icons {
+    left: 8px;
+    top: 60px;
+  }
+
+  .icons button {
+    width: 72px;
+    min-height: 65px;
+    font-size: 11px;
+  }
+
+  .window {
+    left: 8%;
+    top: 110px;
+    max-height: calc(100vh - 125px);
+  }
+
+  .inside {
+    padding: 15px;
+  }
+
+  .little-note {
+    right: 12px;
+    bottom: 12px;
+    width: 170px;
+    padding: 10px;
+  }
+}

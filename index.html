@@ -1,0 +1,211 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ZemalVerse OS</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="topbar">
+    <b>🌸 ZemalVerse OS</b>
+    <span>my little world</span>
+    <span id="clock"></span>
+  </div>
+
+  <!-- my desktop icons -->
+  <div class="icons">
+    <button onclick="openApp('welcome')">🌸<br>Welcome</button>
+    <button onclick="openApp('journal')">📔<br>Journal</button>
+    <button onclick="openApp('projects')">💻<br>Projects</button>
+    <button onclick="openApp('travel')">🌍<br>Travel</button>
+  </div>
+
+  <!-- little messages on my desktop -->
+  <div class="little-note">
+    <p id="myMessage">🌸 Welcome to my little world!</p>
+    <button onclick="changeMessage()">New message ♡</button>
+  </div>
+
+  <!-- welcome page -->
+  <div class="window" id="welcome">
+    <div class="bar">
+      <button onclick="closeApp('welcome')">●</button>
+      <span>Welcome 🌸</span>
+    </div>
+
+    <div class="inside center">
+      <h1>Hii, I'm Zemal! 🌸</h1>
+
+      <p>Welcome to my little world!</p>
+
+      <p>
+        I'm a student from Pakistan who loves learning
+        new things, even though sometimes I get confused
+        and have no idea what I'm doing!
+      </p>
+
+      <p>
+        My coding journey started with a personal website.
+        Then I made my first game, a Slack bot, and now
+        I'm trying to build my own little OS.
+      </p>
+
+      <p>
+        I wanted to make something different from
+        a normal website, so here it is!
+      </p>
+
+      <p>Hope you enjoy exploring it :)</p>
+
+      <a href="https://github.com/zemaldars01-png"
+         target="_blank"
+         rel="noopener noreferrer">
+        My GitHub
+      </a>
+    </div>
+  </div>
+
+  <!-- my journal -->
+  <div class="window" id="journal">
+    <div class="bar">
+      <button onclick="closeApp('journal')">●</button>
+      <span>My Journal 📔</span>
+    </div>
+
+    <div class="inside">
+      <h2>Little things about me</h2>
+      <p>Click on any page to read it!</p>
+
+      <div class="buttons">
+        <button onclick="journalPage(0)">My Story</button>
+        <button onclick="journalPage(1)">My Projects</button>
+        <button onclick="journalPage(2)">My Dreams</button>
+        <button onclick="journalPage(3)">Things I Love</button>
+      </div>
+
+      <div class="paper">
+        <h3 id="journalTitle">My Story</h3>
+        <p id="journalText"></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- my coding projects -->
+  <div class="window wide" id="projects">
+    <div class="bar">
+      <button onclick="closeApp('projects')">●</button>
+      <span>My Projects 💻</span>
+    </div>
+
+    <div class="inside">
+      <h2>Things I've made!</h2>
+
+      <p>
+        Some projects I've worked on while learning
+        how to code. Each one taught me something new!
+      </p>
+
+      <div class="buttons">
+        <button onclick="filterProjects('all')">All</button>
+        <button onclick="filterProjects('web')">Web</button>
+        <button onclick="filterProjects('game')">Games</button>
+        <button onclick="filterProjects('bot')">Bots</button>
+      </div>
+
+      <div class="project" data-type="web">
+        <h3>🌸 My Personal Website</h3>
+
+        <p>
+          This was the first website I ever made!
+          I learned how to use HTML and CSS, and
+          how to upload my work to GitHub.
+          I was really happy when it finally worked.
+        </p>
+
+        <a href="https://zemaldars01-png.github.io/zemal-personal-site/"
+           target="_blank"
+           rel="noopener noreferrer">
+          Visit my website
+        </a>
+      </div>
+
+      <div class="project" data-type="game">
+        <h3>🎮 Out of Sync</h3>
+
+        <p>
+          My first Godot game! I had so many problems
+          with the timer, doors and collisions.
+          Sometimes fixing one thing would break another.
+          But I finally got the game working!
+        </p>
+      </div>
+
+      <div class="project" data-type="bot">
+        <h3>🤖 ZemalBot</h3>
+
+        <p>
+          I made a Slack bot with commands for saying hello,
+          telling jokes and sharing cat facts.
+          Learning how the commands work was something new
+          for me, and I enjoyed testing them.
+        </p>
+
+        <a href="https://github.com/zemaldars01-png/zemal-slack-bot"
+           target="_blank"
+           rel="noopener noreferrer">
+          See my code
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- places i want to visit -->
+  <div class="window wide" id="travel">
+    <div class="bar">
+      <button onclick="closeApp('travel')">●</button>
+      <span>Dream Destinations 🌍</span>
+    </div>
+
+    <div class="inside center">
+      <h2>Places I dream of visiting</h2>
+
+      <p>
+        I really love travelling and learning about
+        different countries. These are some places
+        I would love to visit one day!
+      </p>
+
+      <div class="buttons">
+        <button onclick="showCountry(0)">🇹🇷 Türkiye</button>
+        <button onclick="showCountry(1)">🇰🇷 Korea</button>
+        <button onclick="showCountry(2)">🇯🇵 Japan</button>
+        <button onclick="showCountry(3)">🇨🇭 Switzerland</button>
+        <button onclick="showCountry(4)">🇮🇹 Italy</button>
+      </div>
+
+      <div class="paper">
+        <div id="countryEmoji" class="bigemoji">🇹🇷</div>
+
+        <h3 id="countryName">Türkiye</h3>
+
+        <p id="countryText"></p>
+
+        <p id="countryPlaces"></p>
+
+        <button id="saveButton" onclick="saveCountry()">
+          Add to wishlist ♡
+        </button>
+      </div>
+
+      <div class="paper">
+        <h3>My travel wishlist 💜</h3>
+        <p id="myWishlist">No places saved yet!</p>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
