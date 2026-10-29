@@ -2,51 +2,80 @@
 
 Hiii! I'm Zemal and this is my first WebOS!
 
-I made this for Hack Club Stardance. Honestly, when I first started, I didn't really know how I was going to make an OS using HTML, CSS and JavaScript. I had never made anything like this before, but I wanted to give it a try!
+I made this project for Hack Club Stardance. When I first started, I honestly didn't know how I was going to make an OS using HTML, CSS and JavaScript. I had made a personal website before, but making something where you could open windows and move them around was completely new to me.
 
-I wanted to make something different from a normal website. Like instead of just scrolling through a page, people could open windows, move them around and explore different things about me.
+I wanted to try making something different from a normal website. Instead of just scrolling down a page, I wanted people to click on different things and explore my little world.
 
-I really love the colour purple and cherry blossoms, so I chose a Sakura wallpaper and tried to make everything match. I also wanted it to feel like my own little world, which is why I named it ZemalVerse OS!
+### How it started
 
-You can try it here:
+At first, I made a simple desktop with a purple Sakura wallpaper because I really love purple and cherry blossoms. I added four windows: Welcome, Journal, Projects and Travel. I was really happy when I got them working, especially the draggable windows, because that part was confusing for me.
+
+But after finishing my first version, I received feedback from the Stardance reviewer. They liked my project but suggested that I should make the styling more personal and explain how and why I made everything.
+
+So I decided to change the design!
+
+I started looking at different WebOS projects for ideas and realized that I wanted my apps to look different from each other instead of opening the same type of box every time. I also wanted my desktop to feel a little more like a nighttime room, so I changed the Sakura background to a dark bedroom scene and added picture icons on the side.
+
+I kept my four apps, but changed how they look.
+
+### What's inside?
+
+The first one is Hello. It's just a little letter where I introduce myself and explain what you can explore on my desktop.
+
+Then there's my Diary. I wanted to keep this because I liked having a little space to write about myself. It has four pages about my story, projects, dreams and things I love. You can click the page buttons or use the arrows to move between them.
+
+Next is My CDs! This was one of my favourite changes. In my first version, I had normal project cards with buttons to filter between different categories. This time, I wanted to try something more fun, so I made a CD collection.
+
+Each CD is one of my projects. There's my personal website, Out of Sync (my first game made with Godot), and ZemalBot (my Slack bot). You can switch between the CDs to read what I made and what I learned from each project.
+
+I also kept my travel app because I really love travelling and learning about different countries. I changed it into a little camera where you can go through five countries: Türkiye, South Korea, Japan, Switzerland and Italy.
+
+I added a few places I want to visit in each country and a wishlist where you can save your favourites. The wishlist uses localStorage, which was something new I learned while making this project. It saves the countries in your browser, so they don't disappear when you refresh the page!
+
+I also added a clock, a timer, and a search bar to open the different apps. There's a little black cat and a floating ghost too. You can click on them and they show small messages. I thought it would be fun to have something moving around on the desktop.
+
+### Things I struggled with
+
+One of the hardest things for me was making the windows draggable. I had to understand how JavaScript could use the mouse position to move a window. I got confused a few times, but after testing and changing things, I managed to get it working.
+
+I also learned how to use arrays for the diary pages, projects and countries. Instead of making a completely different page for everything, I could use buttons and JavaScript functions to change what was shown.
+
+And I definitely made mistakes while working on it! When I was adding Italy to my original travel app, I forgot a comma between two objects in JavaScript. Suddenly, things stopped working and I couldn't figure out why. It turned out to be such a small mistake!
+
+The design was another thing I kept changing. Sometimes the windows were too big, sometimes the fonts didn't look right, and sometimes the buttons or other things were covering each other. I tried different layouts and colours before deciding to keep the windows simpler.
+
+### How I made it
+
+I used HTML, CSS and JavaScript to make ZemalVerse OS.
+
+HTML is where I put the windows, icons and buttons. CSS is what I used for the background, colours, fonts and different app designs. JavaScript makes everything interactive, like moving the windows, switching diary pages, changing CDs and saving countries.
+
+I started with the Hack Club WebOS guide and also used ChatGPT for help with code, debugging, understanding JavaScript, design ideas and writing. ChatGPT helped generate parts of the code for the redesigned apps, and I used AI-generated concept artwork for the nighttime background and some icons. I worked with the files in VS Code and made changes while learning how everything fits together.
+
+This project taught me a lot of things I didn't know before, especially about draggable windows, functions, arrays, event listeners and localStorage. I'm still a beginner, and there's definitely a lot more I want to learn.
+
+### How to try it
+
+You can visit my OS here:
+
 https://zemaldars01-png.github.io/zemalverse-os/
 
-So basically, I made four little apps.
+Click the picture icons on the left to open the apps. You can drag the windows using their top bars, flip through my diary, change the CDs, and save countries in the travel camera.
 
-The first one is Welcome, which is just a small introduction about myself.
+You can also try the search bar, timer, cat and ghost.
 
-Then there's My Journal! I added different pages where I talk about my story, the projects I've made, my dreams and the things I love. I really liked making this one because I could add my own thoughts instead of just making random stuff.
+If you want to run it on your computer, you can download the files and open `index.html` in your browser. You don't need to install anything.
 
-I also made a Projects app where I added my personal website, Out of Sync (my first game made with Godot) and ZemalBot (my Slack bot). I made some buttons so you can choose between Web, Games and Bots, and it only shows the projects from that category.
+### Finally...
 
-And then I made Dream Destinations! I love travelling and learning about different countries, so I added Türkiye, South Korea, Japan, Switzerland and Italy. You can click on a country and read why I want to visit it. I also added a wishlist where you can save countries you like!
-
-One thing I learned here was localStorage. I didn't know about it before, but it lets the website remember your saved countries even after refreshing the page, which I found really cool.
-
-I also added a live clock at the top and a small sticky note on the desktop. When you click the button on the note, it shows a different message.
-
-Making the windows move around was probably one of the most confusing parts for me. I had to understand how dragging works with JavaScript. It took some testing, but I finally got all four windows moving, opening and closing properly!
-
-I also made some silly mistakes while coding. For example, when I was adding Italy, I forgot to put a comma between two objects in JavaScript, and suddenly things stopped working. I was so confused until I found the problem!
-
-I changed my design a few times too. At first it looked a little too plain, and I wasn't really happy with the fonts. So I changed the colours, fonts, window borders and some of the writing to make it more personal.
-
-I made this using HTML, CSS and JavaScript. I also learned more about functions, arrays, event listeners and how different files work together.
-
-I followed the Hack Club WebOS guide to get started and used ChatGPT for help with code, explanations, debugging and some design and writing ideas. I customized the project, made changes and tested the different features while working on it.
-
-If you want to run it yourself, you can just download the files and open `index.html` in your browser. No installation needed!
-
-Also, the Sakura wallpaper is not my original artwork. I still need to add its original source.
-
-I know my OS isn't as advanced as some of the other projects, but I'm really happy with what I've made. I started with just a simple welcome page, and now I have four working apps!
-
-This project taught me that even if I don't understand something at first, I can keep trying and figure things out.
+I know my OS isn't perfect, but I'm happy that I gave this a try. I started with a simple welcome window and ended up learning how to make so many different things work together.
 
 Thank you Hack Club for giving me the opportunity to try something new!
 
-And if you have any suggestions for my OS, I'd love to hear them!
+And if you have suggestions for my little OS, I'd love to hear them :)
 
-**Made for Hack Club Stardance**
+Made for Hack Club Stardance
 
-**Live website:** https://zemaldars01-png.github.io/zemalverse-os/
+GitHub: https://github.com/zemaldars01-png/zemalverse-os
+
+Live website: https://zemaldars01-png.github.io/zemalverse-os/

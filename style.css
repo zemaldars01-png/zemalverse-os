@@ -1,5 +1,5 @@
 
-/* my ZemalVerse OS styles */
+/* ZemalVerse OS */
 
 * {
   box-sizing: border-box;
@@ -7,281 +7,506 @@
 
 body {
   margin: 0;
-  font-family: "Trebuchet MS", Arial, sans-serif;
-  background: url("sakura-wallpaper.png") center / cover no-repeat;
   height: 100vh;
   overflow: hidden;
-  color: #523b62;
+  background: #090812 url("assets/night-room.jpg") center / cover no-repeat;
+  color: #29222d;
+  font-family: Arial, sans-serif;
 }
 
-/* top bar with time */
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+h2 {
+  font: 19px "Merienda", cursive;
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+a {
+  color: #644874;
+}
+
+/* top bar */
 
 .topbar {
-  height: 48px;
-  background: #674a80dd;
+  height: 45px;
+  padding: 8px 15px;
+  background: #17131ee0;
   color: white;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 20px;
-  font-size: 14px;
   position: relative;
   z-index: 9999;
+  font-size: 13px;
 }
 
-/* my desktop icons */
+.topbar b {
+  font: 20px "Cherry Bomb One", cursive;
+}
+
+.topbar button {
+  font-size: 12px;
+}
+
+/* desktop icons */
 
 .icons {
   position: absolute;
-  top: 65px;
+  top: 75px;
   left: 15px;
+  width: 110px;
+  max-height: calc(100vh - 90px);
+  overflow-y: auto;
+  padding: 12px 5px;
+  border-radius: 25px;
+  background: #18131fbb;
   display: flex;
   flex-direction: column;
-  gap: 10px;
-  max-height: calc(100vh - 75px);
-  overflow-y: auto;
+  gap: 12px;
+  z-index: 5;
 }
 
 .icons button {
-  width: 95px;
-  min-height: 75px;
-  background: #765991bb;
+  background: none;
+  border: none;
   color: white;
-  border: 1px solid #ddc4ef;
-  border-radius: 9px;
-  cursor: pointer;
-  font-size: 14px;
-  line-height: 25px;
-  font-family: inherit;
+  width: 100%;
+  padding: 5px;
+  font: 13px "Merienda", cursive;
+}
+
+.icons img {
+  display: block;
+  width: 75px;
+  height: 75px;
+  object-fit: contain;
+  margin: 0 auto 5px;
 }
 
 .icons button:hover {
-  background: #9873b4;
+  background: #ffffff22;
+  border-radius: 12px;
 }
 
-/* windows for all my apps */
+/* search */
+
+.search {
+  position: absolute;
+  top: 100px;
+  left: 40%;
+  display: flex;
+  align-items: center;
+  background: #221c2b;
+  padding: 7px;
+  border: 1px solid #8b778e;
+  border-radius: 25px;
+  z-index: 6;
+}
+
+.search input {
+  width: 220px;
+  background: none;
+  border: none;
+  color: white;
+  outline: none;
+}
+
+.search button {
+  background: #c8b1ce;
+  border: none;
+  border-radius: 20px;
+  padding: 5px 12px;
+}
+
+/* windows */
 
 .window {
-  width: 420px;
-  max-width: 90vw;
-  max-height: calc(100vh - 90px);
-  background: #fff9ff;
-  position: absolute;
-  top: 140px;
-  left: 30%;
-  border: 2px solid #b79acb;
-  border-radius: 10px;
-  box-shadow: 4px 5px 12px #40304a55;
-  overflow: auto;
   display: none;
+  position: absolute;
+  top: 170px;
+  left: 30%;
+  width: 430px;
+  max-width: 85vw;
+  max-height: calc(100vh - 190px);
+  background: #f3eadd;
+  border: 2px solid #27212c;
+  overflow: auto;
+  box-shadow: 5px 6px 0 #100c1799;
+  border-radius: 20px;
 }
 
 #welcome {
   display: block;
+  border-radius: 5px;
 }
 
-.wide {
-  width: 550px;
+#journal {
+  border-radius: 8px;
 }
 
-/* top part of the windows */
+#projects {
+  width: 460px;
+  border-radius: 4px;
+  max-height: calc(100vh - 110px);
+}
+
+#travel {
+  width: 450px;
+  border-radius: 18px;
+}
 
 .bar {
-  background: #ddc7ec;
-  padding: 10px;
-  cursor: grab;
+  background: #392b3f;
+  color: white;
+  padding: 9px 13px;
   display: flex;
+  justify-content: space-between;
   align-items: center;
-  gap: 15px;
-  font-weight: bold;
+  cursor: move;
   user-select: none;
   touch-action: none;
 }
 
+.bar span {
+  font: 14px Arial, sans-serif;
+}
+
 .bar button {
-  background: #ee7b89;
-  color: #ee7b89;
-  border: 1px solid #cf5b6b;
+  background: #e99bac;
+  border: 1px solid #b97b8a;
   border-radius: 50%;
-  width: 16px;
-  height: 16px;
-  cursor: pointer;
-  padding: 0;
-  font-size: 0;
+  width: 26px;
+  height: 26px;
+  font-size: 16px;
 }
 
-.inside {
-  padding: 23px;
+/* welcome letter */
+
+.letter {
+  background: #f5e9d2;
+  margin: 10px;
+  padding: 20px;
+  border-radius: 2px;
+  color: #382b3b;
 }
 
-.center {
-  text-align: center;
+.letter h2 {
+  transform: rotate(-1deg);
 }
 
-/* fonts */
-
-h1, h2, h3 {
-  font-family: Georgia, serif;
-  color: #80579c;
+.letter p {
+  font: 16px/1.6 "Handlee", cursive;
 }
 
-h1 {
-  font-size: 27px;
+.signature {
+  text-align: right;
 }
 
-h2 {
-  font-size: 23px;
+/* diary */
+
+.diary {
+  background: #604653;
+  padding: 15px;
 }
 
-h3 {
-  font-size: 19px;
+.pages {
+  background: #fff6e5;
+  min-height: 280px;
+  padding: 20px;
+  border-left: 5px solid #ce9da5;
+  border-radius: 3px;
 }
 
-p {
-  font-size: 15px;
-  line-height: 1.7;
+.pages h2 {
+  font-size: 22px;
+  transform: rotate(-1deg);
 }
 
-button {
-  font-family: "Trebuchet MS", Arial, sans-serif;
+.pages p {
+  font: 16px/1.8 "Handlee", cursive;
 }
-
-a {
-  color: #7953a0;
-  font-weight: bold;
-}
-
-/* small buttons inside my apps */
 
 .buttons {
   display: flex;
+  gap: 6px;
   flex-wrap: wrap;
-  gap: 8px;
-  margin: 18px 0;
+  margin: 15px 0;
 }
 
-.buttons button,
-#saveButton {
-  background: #e6d5f1;
-  color: #664483;
-  padding: 8px 12px;
-  border: 1px solid #c5a3d8;
-  border-radius: 6px;
-  cursor: pointer;
+.buttons button {
+  background: #e5cbd8;
+  border: 1px solid #aa91a5;
+  border-radius: 5px;
+  padding: 7px 10px;
+  font: 15px "Handlee", cursive;
 }
 
-.buttons button:hover,
-#saveButton:hover {
-  background: #d3b5e7;
+.page-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
 }
 
-/* notebook pages */
+.page-bottom button {
+  border-radius: 50%;
+  padding: 5px 10px;
+}
 
-.paper {
-  background: #fffdf5;
+/* CD collection */
+
+.cd-app {
+  background: #17151c;
+  color: white;
+  text-align: center;
   padding: 18px;
-  margin-top: 15px;
-  border: 1px solid #ddcde5;
-  border-radius: 5px;
-  text-align: left;
 }
 
-/* my projects */
-
-.project {
-  padding: 12px 16px;
-  margin: 12px 0;
-  background: #f6edf8;
-  border-left: 3px solid #b894d1;
-  border-radius: 5px;
+.cd-app h2 {
+  font: 18px Arial, sans-serif;
 }
 
-.project h3 {
-  margin-bottom: 5px;
+.cd-app p {
+  font: 14px/1.6 Arial, sans-serif;
 }
 
-/* travel app */
-
-.bigemoji {
-  text-align: center;
-  font-size: 55px;
+.cd-row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-#countryName {
-  text-align: center;
+.cd-row button {
+  font-size: 25px;
+  background: none;
+  border: none;
+  color: white;
 }
 
-#myWishlist {
-  line-height: 1.8;
+.cd {
+  width: 190px;
+  height: 190px;
+  border-radius: 50%;
+  border: 5px solid #aaa3b2;
+  position: relative;
+  background: conic-gradient(
+    #b2cbe3, #e8bdc7, #e7d6a5,
+    #ae9bc8, #a3d3cf, #b2cbe3
+  );
+  animation: spin 15s linear infinite;
 }
 
-/* my little sticky note */
-
-.little-note {
+.cd:after {
+  content: "";
   position: absolute;
-  right: 25px;
-  bottom: 25px;
-  width: 230px;
+  top: 70px;
+  left: 70px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #17151c;
+  border: 5px solid #aaa3b2;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.cd-app .buttons {
+  justify-content: center;
+}
+
+#projectLearned {
+  color: #d2bfd0;
+}
+
+.cd-app a {
+  color: #f1d394;
+}
+
+/* travel camera */
+
+.camera {
+  background: #aaa9ad;
+  margin: 14px;
   padding: 15px;
-  background: #fff0ba;
-  border: 1px solid #e2ce8b;
-  border-radius: 8px;
+  border: 3px solid #777881;
+  border-radius: 35px 25px 40px 20px;
+}
+
+.camera small {
+  font-family: monospace;
+}
+
+.screen {
+  margin-top: 10px;
+  background: #111923;
+  color: white;
   text-align: center;
-  color: #745b68;
-  transform: rotate(3deg);
-  box-shadow: 4px 5px 0 #3b2c4444;
+  padding: 18px;
+  min-height: 225px;
+  border-radius: 20px 10px 25px 15px;
 }
 
-.little-note button {
-  background: #f2d9e7;
-  border: 1px solid #d9acc9;
-  border-radius: 6px;
-  padding: 8px;
-  cursor: pointer;
-  font-family: inherit;
+.screen h2 {
+  font: 21px Arial, sans-serif;
 }
 
-.little-note button:hover {
-  background: #ebc7dc;
+.screen p {
+  font: 14px/1.6 Arial, sans-serif;
 }
 
-/* for smaller screens */
+#countryFlag {
+  font-size: 38px;
+}
 
-@media (max-width: 600px) {
+.camera-buttons {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-top: 15px;
+  gap: 5px;
+}
+
+.camera-buttons button {
+  padding: 7px 10px;
+  border-radius: 15px;
+}
+
+.wishlist {
+  padding: 12px 20px;
+  color: white;
+  background: #33303c;
+  font: 14px Arial, sans-serif;
+}
+
+/* cat and ghost */
+
+.cat, .ghost {
+  position: absolute;
+  border: none;
+  background: none;
+  color: white;
+  z-index: 3;
+}
+
+.cat {
+  bottom: 60px;
+  left: 25%;
+}
+
+.cat-head {
+  display: block;
+  width: 70px;
+  padding: 15px 5px;
+  border-radius: 35px;
+  background: #111;
+  border: 2px solid #504057;
+}
+
+.cat span:last-child,
+.ghost small {
+  display: block;
+  font-size: 12px;
+}
+
+.ghost {
+  top: 35%;
+  right: 15%;
+  animation: float 3s infinite alternate;
+}
+
+.ghost span {
+  display: block;
+  font-size: 35px;
+}
+
+@keyframes float {
+  to { transform: translateY(-20px); }
+}
+
+/* smaller screens */
+
+@media (max-width: 650px) {
   .topbar {
-    font-size: 11px;
-    padding: 0 10px;
+    font-size: 10px;
+    padding: 5px;
   }
 
-  .topbar span:nth-child(2) {
+  .topbar b {
+    font-size: 14px;
+  }
+
+  .topbar > span:nth-child(2) {
     display: none;
   }
 
   .icons {
-    left: 8px;
+    width: 75px;
+    left: 5px;
     top: 60px;
   }
 
+  .icons img {
+    width: 50px;
+    height: 50px;
+  }
+
   .icons button {
-    width: 72px;
-    min-height: 65px;
     font-size: 11px;
   }
 
-  .window {
-    left: 8%;
-    top: 110px;
-    max-height: calc(100vh - 125px);
+  .search {
+    top: 60px;
+    left: 90px;
   }
 
-  .inside {
-    padding: 15px;
+  .search input {
+    width: 115px;
   }
 
-  .little-note {
-    right: 12px;
-    bottom: 12px;
-    width: 170px;
-    padding: 10px;
+  .window, #projects, #travel {
+    left: 85px;
+    top: 115px;
+    width: calc(100vw - 95px);
+    max-width: none;
+    max-height: calc(100vh - 130px);
+  }
+
+  .cd {
+    width: 140px;
+    height: 140px;
+  }
+
+  .cd:after {
+    top: 49px;
+    left: 49px;
+    width: 32px;
+    height: 32px;
+  }
+
+  .letter p, .pages p {
+    font-size: 15px;
+  }
+
+  .cat {
+    bottom: 15px;
+  }
+
+  .ghost {
+    right: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cd, .ghost {
+    animation: none;
   }
 }

@@ -1,15 +1,13 @@
 
-// showing the time at the top
+// clock
 function updateClock() {
-  document.getElementById("clock").textContent =
-    new Date().toLocaleString();
+  document.getElementById("clock").textContent = new Date().toLocaleTimeString();
 }
-
 updateClock();
 setInterval(updateClock, 1000);
 
 
-// opening and closing my apps
+// windows
 let topWindow = 10;
 
 function openApp(id) {
@@ -23,205 +21,236 @@ function closeApp(id) {
 }
 
 
-// moving the windows with my mouse
+// dragging windows
 document.querySelectorAll(".window").forEach(function(app) {
-
   let bar = app.querySelector(".bar");
-  let moving = false;
-  let x = 0;
-  let y = 0;
+  let x, y, moving = false;
 
   app.addEventListener("pointerdown", function() {
     app.style.zIndex = ++topWindow;
   });
 
   bar.addEventListener("pointerdown", function(e) {
-    if (e.target.tagName === "BUTTON") return;
-    if (e.button !== 0) return;
+    if (e.target.tagName === "BUTTON" || e.button !== 0) return;
+    if (window.innerWidth <= 650) return;
 
     moving = true;
+    let pos = app.getBoundingClientRect();
+    x = e.clientX - pos.left;
+    y = e.clientY - pos.top;
 
-    let position = app.getBoundingClientRect();
-
-    x = e.clientX - position.left;
-    y = e.clientY - position.top;
-
-    app.style.left = position.left + "px";
-    app.style.top = position.top + "px";
-
+    app.style.left = pos.left + "px";
+    app.style.top = pos.top + "px";
     bar.setPointerCapture(e.pointerId);
   });
 
   bar.addEventListener("pointermove", function(e) {
     if (!moving) return;
 
-    let left = e.clientX - x;
-    let top = e.clientY - y;
-
-    // making sure the windows don't disappear
-    left = Math.max(0, Math.min(left, window.innerWidth - 60));
-    top = Math.max(48, Math.min(top, window.innerHeight - 60));
+    let left = Math.max(0, Math.min(e.clientX - x, innerWidth - 70));
+    let top = Math.max(45, Math.min(e.clientY - y, innerHeight - 50));
 
     app.style.left = left + "px";
     app.style.top = top + "px";
   });
 
-  bar.addEventListener("pointerup", function() {
+  function stopMoving() {
     moving = false;
-  });
+  }
 
-  bar.addEventListener("pointercancel", function() {
-    moving = false;
-  });
+  bar.addEventListener("pointerup", stopMoving);
+  bar.addEventListener("pointercancel", stopMoving);
+  bar.addEventListener("lostpointercapture", stopMoving);
 });
 
 
-// little pages about me
+// timer
+let seconds = 0;
+let timerInterval;
+
+function updateTimer() {
+  let minutes = String(Math.floor(seconds / 60)).padStart(2, "0");
+  let secs = String(seconds % 60).padStart(2, "0");
+  document.getElementById("timer").textContent = minutes + ":" + secs;
+}
+
+function startTimer() {
+  let button = document.getElementById("timerBtn");
+
+  if (timerInterval) {
+    clearInterval(timerInterval);
+    timerInterval = null;
+    button.textContent = "Start";
+  } else {
+    timerInterval = setInterval(function() {
+      seconds++;
+      updateTimer();
+    }, 1000);
+    button.textContent = "Pause";
+  }
+}
+
+function resetTimer() {
+  clearInterval(timerInterval);
+  timerInterval = null;
+  seconds = 0;
+  updateTimer();
+  document.getElementById("timerBtn").textContent = "Start";
+}
+
+
+// diary
 let pages = [
   {
     title: "My Story",
-    text: "Hi, I'm Zemal! I'm a student from Pakistan. I love trying new things and learning different skills. Coding can be confusing sometimes, but I really like the feeling when something finally works after trying again and again."
+    text: "Hii, I'm Zemal! I'm from Pakistan and I love learning new things. Coding gets confusing sometimes, but I really enjoy it when something finally works."
   },
   {
     title: "My Projects",
-    text: "I started with my personal website. Then I made Out of Sync using Godot, which was definitely not easy! After that, I made my Slack bot called ZemalBot. And now I'm making this mini OS. I never thought I would make all these things!"
+    text: "I started with my personal website. Then I made Out of Sync in Godot and ZemalBot for Slack. Now I'm trying to make my own little desktop!"
   },
   {
     title: "My Dreams",
-    text: "One of my biggest dreams is to study abroad. I would love to travel, learn different languages, meet new people and explore the world. I also want to keep learning and make my family proud one day."
+    text: "I would love to study abroad, travel, learn languages and meet new people. There are so many places I want to visit one day."
   },
   {
     title: "Things I Love",
-    text: "I love music, travelling, learning Turkish and meeting new people. I also like discovering free courses and new opportunities. There are so many things I want to try and learn!"
+    text: "Music, travelling, Turkish, finding free courses, and trying different projects. I always have something new I want to learn."
   }
 ];
 
-function journalPage(number) {
-  document.getElementById("journalTitle").textContent =
-    pages[number].title;
+let currentPage = 0;
 
-  document.getElementById("journalText").textContent =
-    pages[number].text;
+function journalPage(number) {
+  currentPage = number;
+  document.getElementById("journalTitle").textContent = pages[number].title;
+  document.getElementById("journalText").textContent = pages[number].text;
+  document.getElementById("pageNumber").textContent = (number + 1) + " / 4";
+}
+
+function changePage(direction) {
+  journalPage((currentPage + direction + pages.length) % pages.length);
 }
 
 journalPage(0);
 
 
-// filtering my projects
-function filterProjects(type) {
-  let projects = document.querySelectorAll(".project");
+// my CDs
+let projects = [
+  {
+    title: "My Personal Website",
+    text: "The first website I made using HTML and CSS. I wanted somewhere to introduce myself.",
+    learned: "I learned how to change layouts and upload my website using GitHub Pages.",
+    link: "https://zemaldars01-png.github.io/zemal-personal-site/"
+  },
+  {
+    title: "Out of Sync",
+    text: "My first game made with Godot. I had trouble with timers, doors and collisions.",
+    learned: "I learned to test things one by one because fixing one bug sometimes caused another.",
+    link: ""
+  },
+  {
+    title: "ZemalBot",
+    text: "A Slack bot that can say hello, tell jokes and give cat facts.",
+    learned: "I learned how bot commands work and enjoyed testing the responses.",
+    link: "https://github.com/zemaldars01-png/zemal-slack-bot"
+  }
+];
 
-  projects.forEach(function(project) {
-    if (type === "all" || project.dataset.type === type) {
-      project.style.display = "block";
-    } else {
-      project.style.display = "none";
-    }
-  });
+let currentProject = 0;
+
+function showProject(number) {
+  currentProject = number;
+  let project = projects[number];
+
+  document.getElementById("cdNumber").textContent = "CD " + (number + 1) + " / 3";
+  document.getElementById("projectTitle").textContent = project.title;
+  document.getElementById("projectText").textContent = project.text;
+  document.getElementById("projectLearned").textContent = "What I learned: " + project.learned;
+
+  let link = document.getElementById("projectLink");
+  link.href = project.link;
+  link.style.display = project.link ? "inline" : "none";
 }
 
+function changeProject(direction) {
+  showProject((currentProject + direction + projects.length) % projects.length);
+}
 
-// countries i want to visit
+showProject(0);
+
+
+// countries
 let countries = [
   {
-    name: "Türkiye",
-    flag: "🇹🇷",
-    text: "Türkiye is one of my biggest dreams! I love the Turkish language and culture, and I would really love to study there one day.",
-    places: "Places I want to see: Istanbul, Cappadocia and Antalya."
+    name: "Türkiye", flag: "🇹🇷",
+    text: "I'm learning Turkish and would love to study there one day.",
+    places: "Istanbul, Cappadocia, Antalya"
   },
   {
-    name: "South Korea",
-    flag: "🇰🇷",
-    text: "I would love to see South Korea, explore the cities and learn more about its culture.",
-    places: "Places I want to see: Seoul, Busan and Jeju."
+    name: "South Korea", flag: "🇰🇷",
+    text: "I want to explore the cities and learn more about the culture.",
+    places: "Seoul, Busan, Jeju"
   },
   {
-    name: "Japan",
-    flag: "🇯🇵",
-    text: "Japan looks so beautiful, especially during cherry blossom season. I would love to explore it!",
-    places: "Places I want to see: Tokyo, Kyoto and Osaka."
+    name: "Japan", flag: "🇯🇵",
+    text: "I would love to visit Japan during cherry blossom season.",
+    places: "Tokyo, Kyoto, Osaka"
   },
   {
-    name: "Switzerland",
-    flag: "🇨🇭",
-    text: "I really want to see the mountains, lakes and peaceful villages in Switzerland.",
-    places: "Places I want to see: Lucerne, Interlaken and Zurich."
+    name: "Switzerland", flag: "🇨🇭",
+    text: "I want to see the mountains, lakes and beautiful villages.",
+    places: "Lucerne, Interlaken, Zurich"
   },
   {
-    name: "Italy",
-    flag: "🇮🇹",
-    text: "I would love to visit Italy one day! I want to explore its beautiful cities, learn about its history and try Italian food.",
-    places: "Places I want to see: Rome, Venice and Florence."
+    name: "Italy", flag: "🇮🇹",
+    text: "I'd love to see the old cities, explore and try Italian food.",
+    places: "Rome, Venice, Florence"
   }
 ];
 
 let currentCountry = 0;
-
-
-// keeping my wishlist saved after refreshing
 let wishlist = [];
 
 try {
   wishlist = JSON.parse(localStorage.getItem("zemalWishlist")) || [];
-
-  if (!Array.isArray(wishlist)) {
-    wishlist = [];
-  }
+  if (!Array.isArray(wishlist)) wishlist = [];
 } catch (error) {
   wishlist = [];
 }
 
-wishlist = wishlist.filter(function(number) {
-  return Number.isInteger(number) &&
-    number >= 0 && number < countries.length;
-});
+wishlist = [...new Set(wishlist.filter(function(n) {
+  return Number.isInteger(n) && n >= 0 && n < countries.length;
+}))];
 
-wishlist = [...new Set(wishlist)];
-
-
-// showing the country i clicked
 function showCountry(number) {
   currentCountry = number;
-
   let country = countries[number];
 
-  document.getElementById("countryEmoji").textContent =
-    country.flag;
-
-  document.getElementById("countryName").textContent =
-    country.name;
-
-  document.getElementById("countryText").textContent =
-    country.text;
-
-  document.getElementById("countryPlaces").textContent =
-    country.places;
-
-  let button = document.getElementById("saveButton");
-
-  button.textContent = wishlist.includes(number)
-    ? "Remove from wishlist ♥"
-    : "Add to wishlist ♡";
+  document.getElementById("countryFlag").textContent = country.flag;
+  document.getElementById("countryName").textContent = country.name;
+  document.getElementById("countryText").textContent = country.text;
+  document.getElementById("countryPlaces").textContent = country.places;
+  document.getElementById("countryNumber").textContent = (number + 1) + " / 5";
+  document.getElementById("saveButton").textContent =
+    wishlist.includes(number) ? "♥ Remove" : "♡ Save";
 }
 
+function changeCountry(direction) {
+  showCountry((currentCountry + direction + countries.length) % countries.length);
+}
 
-// adding or removing countries
 function saveCountry() {
   if (wishlist.includes(currentCountry)) {
-
-    wishlist = wishlist.filter(function(number) {
-      return number !== currentCountry;
+    wishlist = wishlist.filter(function(n) {
+      return n !== currentCountry;
     });
-
   } else {
     wishlist.push(currentCountry);
   }
 
   try {
-    localStorage.setItem(
-      "zemalWishlist",
-      JSON.stringify(wishlist)
-    );
+    localStorage.setItem("zemalWishlist", JSON.stringify(wishlist));
   } catch (error) {
     console.log("Could not save wishlist");
   }
@@ -230,39 +259,55 @@ function saveCountry() {
   updateWishlist();
 }
 
-
-// showing my saved countries
 function updateWishlist() {
-  let names = wishlist.map(function(number) {
-    return countries[number].flag + " " + countries[number].name;
+  let names = wishlist.map(function(n) {
+    return countries[n].flag + " " + countries[n].name;
   });
 
   document.getElementById("myWishlist").textContent =
-    names.length ? names.join("  •  ") : "No places saved yet!";
+    names.length ? names.join(", ") : "Nothing saved yet!";
 }
 
 showCountry(0);
 updateWishlist();
 
 
-// little messages on my desktop
-let messages = [
-  "🌸 Welcome to my little world!",
-  "Some days coding is so confusing!",
-  "But getting something to work feels amazing!",
-  "One day I hope to study in Türkiye 🇹🇷",
-  "Still learning, still trying ♡"
-];
+// search apps
+function searchApp() {
+  let search = document.getElementById("search").value.toLowerCase();
 
-let messageNumber = 0;
-
-function changeMessage() {
-  messageNumber++;
-
-  if (messageNumber === messages.length) {
-    messageNumber = 0;
+  if (search.includes("diary") || search.includes("journal")) {
+    openApp("journal");
+  } else if (search.includes("cd") || search.includes("project")) {
+    openApp("projects");
+  } else if (search.includes("place") || search.includes("travel")) {
+    openApp("travel");
+  } else if (search.includes("hello") || search.includes("welcome")) {
+    openApp("welcome");
+  } else {
+    alert("Try searching diary, CDs, places or hello!");
   }
+}
 
-  document.getElementById("myMessage").textContent =
-    messages[messageNumber];
+document.getElementById("search").addEventListener("keydown", function(e) {
+  if (e.key === "Enter") searchApp();
+});
+
+
+// cat and ghost
+let catMessages = ["meow!", "purrr", "hello!", "let me sleep"];
+let ghostMessages = ["boo!", "hi!", "hehe", "you found me"];
+let catCount = 0;
+let ghostCount = 0;
+
+function petCat() {
+  document.getElementById("catText").textContent =
+    catMessages[catCount % catMessages.length];
+  catCount++;
+}
+
+function talkGhost() {
+  document.getElementById("ghostText").textContent =
+    ghostMessages[ghostCount % ghostMessages.length];
+  ghostCount++;
 }
